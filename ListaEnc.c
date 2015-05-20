@@ -15,7 +15,7 @@ int liberarLista(ListaEnc* lista) {
     if (lista == NULL)
         return ESTRUTURA_NAO_INICIALIZADA;
 
-    // remover todos os elementos da lista
+    // remove todos os elementos da lista
     while(!estahVazia(lista))
         remover(lista, NULL, 0);
 
@@ -31,16 +31,6 @@ int estahVazia(ListaEnc* lista) {
     else return FALSE;
 }
 
-int verificaIndice(ListaEnc* lista, int pos, int incluiUltimo) {
-    if (pos < 0)
-        return FALSE;
-    if ((incluiUltimo) && (pos > lista->tam))
-        return FALSE;
-    if ((!incluiUltimo) && (pos >= lista->tam))
-        return FALSE;
-    return TRUE;
-}
-
 No* criarNo(int item, No* prox) {
 	No *no = malloc(sizeof(*no));
 	no->item = item;
@@ -51,7 +41,7 @@ No* criarNo(int item, No* prox) {
 int inserir(ListaEnc* lista, int item, int pos) {
     if (lista == NULL)
         return ESTRUTURA_NAO_INICIALIZADA;
-    if (!verificaIndice(lista, pos, TRUE))
+    if (pos < 0 || pos > lista->tam)
         return INDICE_INVALIDO;
 
     No *novoNo;
@@ -80,7 +70,7 @@ int remover(ListaEnc* lista, int* item, int pos) {
         return ESTRUTURA_NAO_INICIALIZADA;
     if (estahVazia(lista))
         return ESTRUTURA_VAZIA;
-    if (!verificaIndice(lista, pos, FALSE))
+    if (pos < 0 || pos >= lista->tam)
         return INDICE_INVALIDO;
 
     No *ant, *atual;
@@ -118,7 +108,7 @@ int obterElemento(ListaEnc* lista, int* item, int pos) {
         return ESTRUTURA_NAO_INICIALIZADA;
     if (estahVazia(lista))
         return ESTRUTURA_VAZIA;
-    if (!verificaIndice(lista, pos, FALSE))
+    if (pos < 0 || pos >= lista->tam)
         return INDICE_INVALIDO;
 
     No *aux;
