@@ -22,6 +22,7 @@ int main() {
     inserir(minhaLista, 5, 0);
     inserir(minhaLista, 4, 0);
     inserir(minhaLista, 3, 0);
+    inserirNoFim(minhaLista, 19);
 
     int i;
     obterElemento(minhaLista, &i, 2);

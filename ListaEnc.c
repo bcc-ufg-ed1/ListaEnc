@@ -127,3 +127,19 @@ int obterTamanho(ListaEnc* lista, int* tam) {
     *tam = lista->tam;
     return OK;
 }
+
+int inserirNoFim(ListaEnc* lista, int *item)
+{
+    if (lista == NULL)
+        return ESTRUTURA_NAO_INICIALIZADA;
+        No *novoNo;
+        No *aux;
+        aux = lista->inicio;
+        for(int i = 0; i < lista->tam - 1; i++) {
+            aux = aux->prox;
+        }
+        novoNo = novoNo = criarNo(item, aux->prox);
+        aux->prox = novoNo;
+    lista->tam++;
+    return OK;
+}
