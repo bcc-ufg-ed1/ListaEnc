@@ -127,3 +127,56 @@ int obterTamanho(ListaEnc* lista, int* tam) {
     *tam = lista->tam;
     return OK;
 }
+
+int inserirNoFim(ListaEnc* lista, int *item)
+{
+    if (lista == NULL)
+        return ESTRUTURA_NAO_INICIALIZADA;
+        No *novoNo;
+        No *aux;
+        aux = lista->inicio;
+        for(int i = 0; i < lista->tam - 1; i++) {
+            aux = aux->prox;
+        }
+        novoNo = novoNo = criarNo(item, aux->prox);
+        aux->prox = novoNo;
+    lista->tam++;
+    return OK;
+}
+
+int obterVetor(ListaEnc* lista, int v[]){
+    if (lista == NULL)
+        return ESTRUTURA_NAO_INICIALIZADA;
+    if (estahVazia(lista))
+        return ESTRUTURA_VAZIA;
+    No *aux;
+    aux = lista->inicio;
+    for(int i=0; i < lista->tam; i++){
+        v[i] = aux->item;
+        aux = aux->prox;
+    }
+    return v;
+    }
+
+int removerDoFim(ListaEnc* lista, int *item)
+{
+    if (lista == NULL)
+        return ESTRUTURA_NAO_INICIALIZADA;
+    if (estahVazia(lista))
+        return ESTRUTURA_VAZIA;
+    No *ant, *atual;
+    ant = NULL;
+    atual = lista->inicio;
+    for(int i = 0; i < lista->tam -1; i++)
+    {
+        ant = atual;
+        atual = atual->prox;
+    }
+    ant->prox = atual->prox;
+    if (item != NULL)
+        *item = atual->item;
+    free(atual);
+    atual = NULL;
+    lista->tam--;
+    return OK;
+}
