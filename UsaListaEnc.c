@@ -24,10 +24,15 @@ int main() {
     inserir(minhaLista, 3, 0);
     inserirNoFim(minhaLista, 19);
 
-    int i;
+    int i,tam;
     obterElemento(minhaLista, &i, 2);
     printf("Elemento da posicao 2: %d\n", i);
-
+    obterTamanho(minhaLista, &tam);
+    int v[tam];
+    obterVetor(minhaLista, &v);
+    for(int j = 0; j < tam; j++){
+        printf("v[%d] = %d \n",j,v[j]);
+    }
     imprimir(minhaLista);
     remover(minhaLista, NULL, 3);
     imprimir(minhaLista);

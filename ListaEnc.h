@@ -25,3 +25,4 @@ int remover(ListaEnc* lista, int* item, int pos);
 int obterElemento(ListaEnc* lista, int* item, int pos);
 int obterTamanho(ListaEnc* lista, int* tam);
 int inserirNoFim(ListaEnc* lista, int *item);
+int obterVetor(ListaEnc* lista, int v[]);

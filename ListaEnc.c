@@ -143,3 +143,17 @@ int inserirNoFim(ListaEnc* lista, int *item)
     lista->tam++;
     return OK;
 }
+
+int obterVetor(ListaEnc* lista, int v[]){
+    if (lista == NULL)
+        return ESTRUTURA_NAO_INICIALIZADA;
+    if (estahVazia(lista))
+        return ESTRUTURA_VAZIA;
+    No *aux;
+    aux = lista->inicio;
+    for(int i=0; i < lista->tam; i++){
+        v[i] = aux->item;
+        aux = aux->prox;
+    }
+    return v;
+    }
