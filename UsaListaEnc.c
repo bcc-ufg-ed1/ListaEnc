@@ -24,15 +24,18 @@ int main() {
     inserir(minhaLista, 3, 0);
 
     int i;
-    obterElemento(minhaLista, &i, 2);
-    printf("Elemento da posicao 2: %d\n", i);
+    //obterElemento(minhaLista, &i, 2);
+    obterInicio(minhaLista,&i,0);
+   // printf("Elemento da posicao 2: %d\n", i);
 
+   // imprimir(minhaLista);
+   // remover(minhaLista, NULL, 3);
+   // imprimir(minhaLista);
+   // remover(minhaLista, NULL, 2);
+   // imprimir(minhaLista);
+   // remover(minhaLista, NULL, 1);
     imprimir(minhaLista);
-    remover(minhaLista, NULL, 3);
-    imprimir(minhaLista);
-    remover(minhaLista, NULL, 2);
-    imprimir(minhaLista);
-    remover(minhaLista, NULL, 1);
-    imprimir(minhaLista);
+printf("Inicio lista:%d\n",i);
+   imprimir(minhaLista);
 }
 
