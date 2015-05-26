@@ -57,8 +57,9 @@ int inserir(ListaEnc* lista, int item, int pos) {
             aux = aux->prox;
         }
 
+
         // adiciona o nó
-        novoNo = novoNo = criarNo(item, aux->prox);
+        novoNo = criarNo(item, aux->prox);
         aux->prox = novoNo;
     }
     lista->tam++;
@@ -127,3 +128,38 @@ int obterTamanho(ListaEnc* lista, int* tam) {
     *tam = lista->tam;
     return OK;
 }
+
+int obterInicio(ListaEnc* lista, int *item,int pos){
+  if (lista == NULL)
+        return ESTRUTURA_NAO_INICIALIZADA;
+    if (estahVazia(lista))
+        return ESTRUTURA_VAZIA;
+    if (pos < 0 || pos >= lista->tam)
+        return INDICE_INVALIDO;
+         if(lista->inicio!=NULL)
+        *item = lista->inicio->item;
+        return OK;
+
+}
+
+
+
+int obterUltimo(ListaEnc* lista) {
+    if (lista == NULL)
+        return ESTRUTURA_NAO_INICIALIZADA;
+    if (estahVazia(lista))
+        return ESTRUTURA_VAZIA;
+   // if (pos < 0 || pos >= lista->tam)
+        //return INDICE_INVALIDO;
+
+    No *aux;
+    aux = lista->inicio;
+    for(int i = 0; i < lista->tam-1; i++) {
+        aux = aux->prox;
+    }
+
+    return  aux->item;
+
+
+}
+

@@ -24,3 +24,5 @@ int inserir(ListaEnc* lista, int item, int pos);
 int remover(ListaEnc* lista, int* item, int pos);
 int obterElemento(ListaEnc* lista, int* item, int pos);
 int obterTamanho(ListaEnc* lista, int* tam);
+int obterInicio(ListaEnc* lista, int *item,int pos);
+int obterUltimo(ListaEnc* lista);
