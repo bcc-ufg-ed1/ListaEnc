@@ -13,7 +13,6 @@ void imprimir(ListaEnc* lista) {
     printf("]\n");
 }
 
-
 int main() {
     ListaEnc* minhaLista = criarLista();
 

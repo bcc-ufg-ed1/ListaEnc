@@ -18,7 +18,6 @@ int liberarLista(ListaEnc* lista) {
     // remove todos os elementos da lista
     while(!estahVazia(lista))
         remover(lista, NULL, 0);
-
     free(lista);
     lista = NULL;
     return OK;
@@ -27,12 +26,15 @@ int liberarLista(ListaEnc* lista) {
 int estahVazia(ListaEnc* lista) {
     if (lista == NULL)
         return ESTRUTURA_NAO_INICIALIZADA;
-    if (lista->inicio == NULL) return TRUE;
-    else return FALSE;
+    if (lista->inicio == NULL)
+        return TRUE;
+    return FALSE;
 }
 
 No* criarNo(int item, No* prox) {
 	No *no = malloc(sizeof(*no));
+	if (no == NULL)
+        return NULL;
 	no->item = item;
 	no->prox = prox;
 	return no;
@@ -48,6 +50,8 @@ int inserir(ListaEnc* lista, int item, int pos) {
     if (pos == 0) {
         // insere no início da lista
         novoNo = criarNo(item, lista->inicio);
+        if (novoNo == NULL)
+            return ESTRUTURA_NAO_INICIALIZADA;
         lista->inicio = novoNo;
     } else {
         // prepara para inserir
@@ -59,6 +63,8 @@ int inserir(ListaEnc* lista, int item, int pos) {
 
         // adiciona o nó
         novoNo = novoNo = criarNo(item, aux->prox);
+        if (novoNo == NULL)
+            return ESTRUTURA_NAO_INICIALIZADA;
         aux->prox = novoNo;
     }
     lista->tam++;
@@ -110,7 +116,8 @@ int obterElemento(ListaEnc* lista, int* item, int pos) {
         return ESTRUTURA_VAZIA;
     if (pos < 0 || pos >= lista->tam)
         return INDICE_INVALIDO;
-
+    if (item == NULL)
+        return PARAMETRO_INVALIDO;
     No *aux;
     aux = lista->inicio;
     for(int i = 0; i < pos; i++) {
@@ -124,6 +131,8 @@ int obterElemento(ListaEnc* lista, int* item, int pos) {
 int obterTamanho(ListaEnc* lista, int* tam) {
     if (lista == NULL)
         return ESTRUTURA_NAO_INICIALIZADA;
+    if (tam == NULL)
+        return PARAMETRO_INVALIDO;
     *tam = lista->tam;
     return OK;
 }
