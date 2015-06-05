@@ -24,8 +24,12 @@ typedef struct {
 ListaEnc* criarLista();
 int liberarLista(ListaEnc* lista);
 int estahVazia(ListaEnc* lista);
+int inserirNoInicio(ListaEnc* lista, int item);
 int inserir(ListaEnc* lista, int item, int pos);
+int inserirNoFim(ListaEnc* lista, int item);
+int removerDoInicio(ListaEnc* lista, int* item);
 int remover(ListaEnc* lista, int* item, int pos);
+int removerDoFim(ListaEnc* lista, int* item);
 int obterElemento(ListaEnc* lista, int* item, int pos);
 int obterTamanho(ListaEnc* lista, int* tam);
 

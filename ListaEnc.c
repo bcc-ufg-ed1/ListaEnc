@@ -40,6 +40,17 @@ No* criarNo(int item, No* prox) {
 	return no;
 }
 
+int inserirNoInicio(ListaEnc* lista, int item) {
+    if (lista == NULL)
+        return ESTRUTURA_NAO_INICIALIZADA;
+    No *novoNo = criarNo(item, lista->inicio);
+    if (novoNo == NULL)
+        return ESTRUTURA_NAO_INICIALIZADA;
+    lista->inicio = novoNo;
+    lista->tam++;
+    return OK;
+}
+
 int inserir(ListaEnc* lista, int item, int pos) {
     if (lista == NULL)
         return ESTRUTURA_NAO_INICIALIZADA;
@@ -48,11 +59,7 @@ int inserir(ListaEnc* lista, int item, int pos) {
 
     No *novoNo;
     if (pos == 0) {
-        // insere no início da lista
-        novoNo = criarNo(item, lista->inicio);
-        if (novoNo == NULL)
-            return ESTRUTURA_NAO_INICIALIZADA;
-        lista->inicio = novoNo;
+        return inserirNoInicio(lista, item);
     } else {
         // prepara para inserir
         No *aux;
@@ -71,6 +78,26 @@ int inserir(ListaEnc* lista, int item, int pos) {
     return OK;
 }
 
+int inserirNoFim(ListaEnc* lista, int item) {
+    return inserir(lista, item, lista->tam);
+}
+
+int removerDoInicio(ListaEnc* lista, int* item) {
+    if (lista == NULL)
+        return ESTRUTURA_NAO_INICIALIZADA;
+    if (estahVazia(lista))
+        return ESTRUTURA_VAZIA;
+    No *aux = lista->inicio;
+    if (item != NULL)
+        *item = aux->item;
+    lista->inicio = aux->prox;
+    free(aux);
+    aux = NULL;
+    lista->tam--;
+    return OK;
+
+}
+
 int remover(ListaEnc* lista, int* item, int pos) {
     if (lista == NULL)
         return ESTRUTURA_NAO_INICIALIZADA;
@@ -81,13 +108,7 @@ int remover(ListaEnc* lista, int* item, int pos) {
 
     No *ant, *atual;
     if (pos == 0) {
-        // remove do início da lista
-        atual = lista->inicio;
-        if (item != NULL)
-            *item = atual->item;
-        lista->inicio = atual->prox;
-        free(atual);
-        atual = NULL;
+        return removerDoInicio(lista, item);
     } else {
         // prepara para remover
         ant = NULL;
@@ -104,9 +125,12 @@ int remover(ListaEnc* lista, int* item, int pos) {
         free(atual);
         atual = NULL;
     }
-
     lista->tam--;
     return OK;
+}
+
+int removerDoFim(ListaEnc* lista, int* item) {
+    return remover(lista, item, lista->tam - 1);
 }
 
 int obterElemento(ListaEnc* lista, int* item, int pos) {
